@@ -9,6 +9,9 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\Models\User;
+use app\models\Loan;
+use app\models\Users;
 
 class SiteController extends Controller
 {
@@ -122,5 +125,54 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Displays test page.
+     *
+     * @return string
+     */
+    public function actionAll()
+    {
+        $user = new Users;
+        $loan = new Loan;
+
+        $request = Yii::$app->request; 
+
+        if ($user->load($request->post())) {
+            $userData = $request->post('Users');
+            $user->setAttributes([
+                'first_name' => $userData['first_name'],
+                'last_name' => $userData['last_name'],
+                'email' => $userData['email'],
+                'phone' => $userData['phone'],
+                'active' => $userData['active'],
+                'dead' => $userData['dead'],
+                'lang' => $userData['lang']
+            ], true);
+            $user->insert();
+
+            Yii::$app->getSession()->setFlash('success', 'New user added');
+        }
+
+        if ($loan->load($request->post())) {
+            $loanData = $request->post('Loan');
+            $loan->setAttributes([
+                'user_id' => $loanData['user_id'],
+                'amount' => $loanData['amount'],
+                'interest' => $loanData['interest'],
+                'start_date' => date("m/d/Y",strtotime($loanData['start_date'])),
+                'end_date' => date("m/d/Y",strtotime($loanData['end_date'])),
+                'campaign' => $loanData['campaign'],
+            ], true);
+            $loan->insert();
+
+            Yii::$app->getSession()->setFlash('success', 'New loan added');
+        }
+        
+        return $this->render('myActions', [
+            'user' => $user,
+            'loan' => $loan
+        ]);
     }
 }

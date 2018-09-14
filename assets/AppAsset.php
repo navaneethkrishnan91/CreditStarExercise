@@ -19,6 +19,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/fonts.css?family=Ubuntu:400,700',
     ];
     public $js = [
     ];

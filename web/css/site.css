@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    font-family: 'Ubuntu';
 }
 
 .wrap {
@@ -90,10 +91,19 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+.bottom{
+    margin-right: 10px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    box-shadow: 0px 2px 2px 1px lightgrey
+}
+
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
-    padding: 15px;
     border: none;
+    margin-top: 10px;
 }
 
 @media(max-width:767px) {

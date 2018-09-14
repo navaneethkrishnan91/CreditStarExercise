@@ -8,7 +8,7 @@ DBPASSWD=r4shXqJa
 DBNAME=exercise
 REMOTE_HOST=10.0.2.2
 REMOTE_NETWORK=10.0.2.0/24
-GITHUB_TOKEN= TOKEN_HERE #replace with an actual valid token
+GITHUB_TOKEN=87bc168e40faeba1fa3c216eaa8a7b4089ac2c16 #replace with an actual valid token
 
 echo -e "\n--- Set system encoding to UTF-8 ---\n"
 
